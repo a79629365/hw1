@@ -49,6 +49,9 @@ def pla_pocket(dataset, iter):
                     w_pocket = w
                     error_pocket = count_error(w, dataset)
                     break
+            if update == iter:
+                break
+
         if finish==True:
             break
         if update == iter:
@@ -77,7 +80,7 @@ if __name__ == '__main__':
     start = time.time()
     w, err = pla_pocket(dataset, 100)
     end = time.time()
-    accuracy = (float)(num - err) / num * 100.0
+    accuracy = float((num - err) / num) * 100.0
     print("accuracy: %f" % accuracy)
     print("執行時間：%.8f 秒" % (end - start))
 
