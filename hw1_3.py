@@ -56,7 +56,7 @@ def pla_pocket(dataset):
 if __name__ == '__main__':
 
     # 讀取樣本點資料
-    data = pd.read_csv('./sample_q3.csv', header=0)
+    data = pd.read_csv('./sample_q4.csv', header=0)
     data = data.astype(int)
     x_coord = data.iloc[:,0]
     y_coord = data.iloc[:,1]
