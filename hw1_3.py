@@ -27,8 +27,9 @@ def pla_pocket(dataset, iter):
     w = np.zeros(3)
     w_pocket = w
     error_pocket = count_error(w, dataset)
+    update = 0
     
-    for i in range(iter):
+    while True:
         rand_order = range(num)
         rand_order = random.sample(rand_order, num)
 
@@ -39,6 +40,7 @@ def pla_pocket(dataset, iter):
             if check_error(w, x, y):
                 x = np.array(x)
                 w = w + y * x
+                update += 1 
                 finish = False
                 
                 # 計算新 w 的分類錯誤數是否小於 w_pocket 的
@@ -48,6 +50,8 @@ def pla_pocket(dataset, iter):
                     error_pocket = count_error(w, dataset)
                     break
         if finish==True:
+            break
+        if update == iter:
             break
 
     return w_pocket, error_pocket
@@ -71,9 +75,9 @@ if __name__ == '__main__':
 
     # 執行 Pocket Algorithm
     start = time.time()
-    w, err = pla_pocket(dataset, 100000)
+    w, err = pla_pocket(dataset, 100)
     end = time.time()
-    accuracy = (float)(num - err) / num *100
+    accuracy = (float)(num - err) / num * 100.0
     print("accuracy: %f" % accuracy)
     print("執行時間：%.8f 秒" % (end - start))
 
