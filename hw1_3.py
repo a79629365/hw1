@@ -21,14 +21,14 @@ def count_error(w, dataset):
     return error
 
 # Pocket Algorithm
-def pla_pocket(dataset):
+def pla_pocket(dataset, iter):
     # 初始化變數
     num = len(dataset)
     w = np.zeros(3)
     w_pocket = w
     error_pocket = count_error(w, dataset)
     
-    while True:
+    for i in range(iter):
         rand_order = range(num)
         rand_order = random.sample(rand_order, num)
 
@@ -71,7 +71,7 @@ if __name__ == '__main__':
 
     # 執行 Pocket Algorithm
     start = time.time()
-    w, err = pla_pocket(dataset)
+    w, err = pla_pocket(dataset, 100000)
     end = time.time()
     accuracy = (float)(num - err) / num *100
     print("accuracy: %f" % accuracy)
